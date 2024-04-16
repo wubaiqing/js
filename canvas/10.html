@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <style>
+    #drawing {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+<canvas id="drawing"></canvas>
+<img style="display: none;" src="../images/爸爸.png" alt="8.png">
+
+<script>
+  /**
+   *
+   * @type {HTMLCanvasElement}
+   */
+  let drawing = document.getElementById("drawing");
+  if (drawing.getContext) {
+    let context = drawing.getContext("2d");
+    context.fillStyle = "#ff0000";
+    context.fillRect(10, 10, 50, 50);
+
+    // context.globalAlpha = 0.5;
+
+    // context.globalCompositeOperation = "source-over";
+    // context.globalCompositeOperation = "source-in";
+    // context.globalCompositeOperation = "source-out";
+    // context.globalCompositeOperation = "source-atop";
+    // context.globalCompositeOperation = "destination-over";
+    // context.globalCompositeOperation = "destination-in";
+    // context.globalCompositeOperation = "destination-out";
+    // context.globalCompositeOperation = "destination-out";
+    // context.globalCompositeOperation = "destination-atop";
+    // context.globalCompositeOperation = "lighter";
+    // context.globalCompositeOperation = "copy";
+    context.globalCompositeOperation = "xor";
+
+    context.fillStyle = "rgba(0,0,255,1)";
+    context.fillRect(30, 30, 50, 50);
+    context.globalAlpha = 0;
+
+
+
+  }
+</script>
+</body>
+</html>
