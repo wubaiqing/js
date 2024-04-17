@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <form action="" id="wubaiqing">
+
+    <textarea name="wubaiqing" autofocus >213123123</textarea>
+
+  </form>
+  <script>
+    let textarea = document.forms[0].elements[0];
+    // textarea.select();
+
+    textarea.setSelectionRange(0, 3);
+
+    textarea.addEventListener("keypress", (event) => {
+      console.log(String.fromCharCode(event.charCode));
+      event.preventDefault();
+    })
+
+    textarea.addEventListener("select", (event) => {
+
+      console.log(`Text selected: ${textarea.value}`);
+
+      // console.log(event.selectionStart);
+      // console.log(event.selectionEnd);
+
+      // console.log( document.selection.createRange().text);
+
+    })
+  </script>
+
+</body>
+</html>

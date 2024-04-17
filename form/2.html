@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <form action="" id="wubaiqing">
+
+    <input name="name" tabindex="1" />
+    <input name="name2" tabindex="3" autofocus />
+    <input name="name3" tabindex="2" />
+
+    <input type="reset" value="Reset Form" />
+
+    <input type="image" src="../images/爸爸.png" />
+
+  </form>
+  <script>
+    let firstForm = document.forms[0];
+    console.log(firstForm);
+
+
+    /** @type {HTMLFormElement} */
+    let nameForm = document.forms["wubaiqing"]
+
+    console.log( nameForm.elements[0]);
+    console.log( nameForm.elements["name"]);
+    console.log( nameForm.elements.length);
+
+    const field = nameForm.elements["name2"];
+    field.value = "666666"
+    // field.focus();
+    // field.disabled = true;
+
+    field.addEventListener("focus", (event) => {
+      const target = event.target;
+        target.style.backgroundColor = "yellow";
+    })
+
+    field.addEventListener("blur", (event) => {
+      const target = event.target;
+      target.style.backgroundColor  = "red"
+
+    })
+
+
+    nameForm.addEventListener("submit", (event) => {
+      console.log(event.preventDefault());
+
+    })
+
+  </script>
+
+</body>
+</html>

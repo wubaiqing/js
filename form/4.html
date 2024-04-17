@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <form action="" id="wubaiqing">
+
+    <textarea name="wubaiqing" autofocus >213123123</textarea>
+
+  </form>
+  <script>
+    let textarea = document.forms[0].elements[0];
+
+    textarea.addEventListener("copy", (event) => {
+      const selection = document.getSelection();
+      event.clipboardData.setData("text/plain", selection.toString().toUpperCase());
+    })
+
+    textarea.addEventListener('paste', (event) => {
+      let text = event.clipboardData.getData("text");
+      console.log(text);
+    })
+  </script>
+
+</body>
+</html>
