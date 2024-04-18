@@ -9,7 +9,7 @@
     <form action="">
       <select name="location" id="selLocation">
         <option value="UA">UA</option>
-        <option value="China" selected>China</option>
+        <option value="China">China</option>
         <option value="Los Angeles">Los Angeles</option>
       </select>
     </form>
@@ -20,9 +20,11 @@
        */
       let selectbox = document.forms[0].elements["location"];
 
-      selectbox.removeChild(selectbox.options[2]);
-      // selectbox.remove(0)
-      // selectbox.options[0].remove();
+      let optionToMove = selectbox.options[2];
+      selectbox.insertBefore(optionToMove, selectbox.options[optionToMove.index - 2])
+      optionToMove.selected = true;
+
+
     </script>
   </body>
 </html>
