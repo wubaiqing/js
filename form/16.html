@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="toolbar">
+      <button id="boldButton">Bold</button>
+      <button id="italicButton">Italic</button>
+      <button id="underlineButton">Underline</button>
+      <button id="getSelection">getSelection</button>
+    </div>
+
+    <div id="editor" contenteditable="true" role="textbox" style="margin-top: 10px; border: 1px solid gray; padding: 10px; border-radius: 5px;">
+      Change me!
+      <b>This is bold</b>
+      <i>This is italic</i>
+    </div>
+
+
+    <script>
+      const eidtor = document.getElementById("editor");
+      const boldButton = document.getElementById("boldButton");
+      const italicButton = document.getElementById("italicButton");
+      const underlineButton = document.getElementById("underlineButton");
+      const getSelection = document.getElementById("getSelection");
+
+      const fontSize = document.queryCommandValue("fontsize")
+
+      function performAction(command) {
+        document.execCommand(command, false, null)
+        eidtor.focus();
+      }
+
+      boldButton.addEventListener("click", function () {
+        performAction("bold");
+      })
+
+      italicButton.addEventListener("click", function () {
+        performAction("italic");
+      })
+
+      underlineButton.addEventListener("click", function () {
+        performAction("underline");
+      })
+
+      getSelection.addEventListener("click", function () {
+        const selection = document.getSelection();
+        console.log(selection.toString());
+
+        const range = selection.getRangeAt(0);
+        console.log(range.toString());
+
+
+
+        const span = document.createElement("span");
+        span.style.backgroundColor = "yellow"
+        range.surroundContents(span);
+
+        console.log( eidtor.innerHTML);
+      })
+
+
+    </script>
+  </body>
+
+</html>
