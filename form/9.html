@@ -6,7 +6,8 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="" id="wubaiqing">
+    <!-- 禁用验证 -->
+    <form action="" id="wubaiqing" novalidate>
       <input type="text" name="tel1" id="txtTel1" maxlength="3" required />
 
       <input type="url" name="" id="">
@@ -27,8 +28,12 @@
       const isUserNameRequired = "required" in document.createElement("input");
       const submit = document.getElementById('submit');
       submit.addEventListener("click", (event) => {
-        console.log(document.forms[0].elements[10]);
-        console.log(document.forms[0].elements[10].checkVisibility());
+
+        /** @type {HTMLFormElement} */
+        const form = document.forms[0].elements[10];
+
+        console.log(form.validity);
+        document.forms[0].elements[10].checkVisibility();
       })
 
     </script>

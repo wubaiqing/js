@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <select name="location" id="selLocation">
+        <option value="UA">UA</option>
+        <option value="China" selected>China</option>
+        <option value="Los Angeles">Los Angeles</option>
+      </select>
+    </form>
+
+    <script>
+      /**
+       * @type {HTMLSelectElement}
+       */
+      let selectbox = document.forms[0].elements["location"];
+
+      selectbox.removeChild(selectbox.options[2]);
+    </script>
+  </body>
+</html>

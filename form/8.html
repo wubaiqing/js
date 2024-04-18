@@ -27,8 +27,15 @@
       const isUserNameRequired = "required" in document.createElement("input");
       const submit = document.getElementById('submit');
       submit.addEventListener("click", (event) => {
-        console.log(document.forms[0].elements[10]);
-        console.log(document.forms[0].elements[10].checkVisibility());
+
+        /** @type {HTMLFormElement} */
+        const form = document.forms[0].elements[10];
+
+        console.log(form.validity);
+        // console.log(form.valueMissing);
+        document.forms[0].elements[10].checkVisibility();
+
+        // event.preventDefault();
       })
 
     </script>
