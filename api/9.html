@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" name="a" id="a">
+    <div id="output">1</div>
+    <div id="progress">2</div>
+
+    <script>
+      let filesList = document.getElementById('a');
+
+      filesList.addEventListener('change', (event) => {
+
+        let info = "",
+          output = document.getElementById("output")
+          progress = document.getElementById("progress")
+          files = event.target.files,
+          reader = new FileReader();
+
+          if (/image/.test(files[0].type)) {
+            reader.readAsDataURL(files[0]);
+            type = "image";
+          } else {
+            reader.readAsText(files[0]);
+            type = "text"
+          }
+
+        reader.onError = function () {
+          output.innerHTML = "Could not read file, error code is " + reader.error.code;
+        }
+
+        reader.onProgress = function (event) {
+          if (event.lengthComputable) {
+            progress.innerHTML = `${event.loaded}/${event.total}`
+          }
+        }
+
+        reader.onload = function () {
+          let html = "";
+
+          switch(type) {
+            case "image":
+              html = `<img src="${reader.result}" />`;
+              break;
+            case "text":
+              html = reader.result;
+              break;
+          }
+
+          output.innerHTML = html;
+        }
+
+      })
+
+    </script>
+  </body>
+</html>

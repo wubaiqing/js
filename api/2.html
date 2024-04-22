@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    const textEncoder = new TextEncoder();
+
+    const fooArr = new Uint8Array();
+    const barArr = new Uint8Array();
+
+    const fooResult = textEncoder.encodeInto('foo', fooArr)
+    const barResult = textEncoder.encodeInto('bar', barArr)
+
+    console.log(fooArr);
+    console.log(fooResult);
+
+    console.log(barArr);
+    console.log(barResult);
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function* charts() {
+        const decodeText = "foo";
+
+        for (let char of decodeText) {
+          yield await new Promise((resolve) => {
+            setTimeout(() => {
+              resolve(char);
+            }, 1000);
+          });
+        }
+      }
+
+      const decodedTextStream = new ReadableStream({
+        async start(controller) {
+          for await (let char of charts()) {
+            controller.enqueue(char);
+          }
+          controller.close();
+        },
+      });
+
+      const encodedTextStream = decodedTextStream.pipeThrough(
+        new TextEncoderStream()
+      );
+
+      const readableStreamDefaultReader = encodedTextStream.getReader();
+
+      (async function () {
+        while(true) {
+          const { done, value } = await readableStreamDefaultReader.read();
+
+          if (done) {
+            break;
+          } else {
+            console.log(value);
+          }
+        }
+
+      })();
+
+
+    </script>
+  </body>
+</html>
