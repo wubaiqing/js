@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" name="a" id="a" />
+    <div id="output">1</div>
+    <div id="progress">2</div>
+
+    <script>
+      console.log(new Blob(["foo"]));
+      console.log(new Blob(['{ "a": "b"}'], { type: "application/json" }));
+      console.log(new Blob(["<p>Foo</p>", "<p>Bar</p>"]), {
+        type: "text/html",
+      });
+
+      new Blob(["foo"]).slice(0, 2).text().then(console.log);
+
+    </script>
+  </body>
+</html>
