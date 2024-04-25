@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="droptarget"></div>
+
+    <div draggable="true">wubaiqing</div>
+
+    <style>
+      #droptarget {
+        width: 200px;
+        height: 200px;
+        background-color: bisque;
+      }
+    </style>
+
+    <script>
+      Notification.requestPermission().then(function (result) {
+        if (result =="granted") {
+          const n = new Notification("title Text!", {
+            body: "body text!"
+          })
+
+          n.onshow = function () {
+            console.log('on show');
+          }
+
+          n.onclick = function () {
+            console.log('on click');
+          }
+
+          n.onclose = function () {
+            console.log('on close');
+          }
+
+          n.onerror = function () {
+            console.log('on error');
+          }
+
+          setTimeout(() => {
+            n.close();
+          });
+
+        }
+      });
+    </script>
+
+  </body>
+</html>

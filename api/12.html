@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="droptarget">
+      <input type="file" name="" multiple id="">
+
+    </div>
+    <div id="output">2</div>
+    <style>
+      #droptarget {
+        width: 200px;
+        height: 200px;
+        background-color: bisque;
+      }
+    </style>
+
+    <script>
+      const droptarget = document.getElementById("droptarget");
+
+      function handleEvent(event) {
+        let info = "",
+          output = document.getElementById("output"),
+          files, i, len;
+
+          event.preventDefault();
+
+          if (event.type == "drop") {
+            files = event.dataTransfer.files;
+            i = 0;
+            len = files.length;
+
+            while (i < len) {
+              info += `${files[i].name} (${files[i].type}, ${files[i].size} bytes)`;
+              i++;
+            }
+
+            output.innerHTML = info;
+          }
+      }
+
+      droptarget.addEventListener("dragenter", handleEvent);
+      droptarget.addEventListener("dragover", handleEvent);
+      droptarget.addEventListener("drop", handleEvent);
+
+    </script>
+  </body>
+</html>

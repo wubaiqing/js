@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="droptarget"></div>
+
+    <div draggable="true">wubaiqing</div>
+
+    <style>
+      #droptarget {
+        width: 200px;
+        height: 200px;
+        background-color: bisque;
+      }
+    </style>
+
+    <script>
+
+      const droptarget = document.getElementById("droptarget");
+
+      droptarget.effectAllowed = "all";
+      droptarget.dropEffect = "all"
+
+      droptarget.addEventListener("drag", function (event) {
+        // console.log(event.dataTransfer);
+        event.preventDefault();
+      });
+
+      droptarget.addEventListener("dragover", function (event) {
+        // console.log(event.dataTransfer);
+        event.preventDefault();
+      });
+
+      droptarget.addEventListener("dragenter", function (event) {
+        console.log(event.dataTransfer);
+        event.preventDefault();
+        droptarget.style.backgroundColor = "red";
+      });
+
+
+
+    </script>
+
+  </body>
+</html>

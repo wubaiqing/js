@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="mediaplayer">
+      <div class="video">
+        <video
+          id="player"
+          src="../images/1.mp4"
+          poster="../images/爸爸.png"
+          width="300"
+          height="200"
+        >
+          Video player not available.
+        </video>
+      </div>
+
+      <div class="controls">
+        <input type="button" value="Play" id="video-btn" />
+        <span id="curtime">0</span>/<span id="duration">0</span>
+      </div>
+    </div>
+    <script>
+      const player = document.getElementById("player"),
+        videoBtn = document.getElementById("video-btn"),
+        curtime = document.getElementById("curtime"),
+        duration = document.getElementById("duration");
+
+      duration.innerHTML = player.duration;
+
+      videoBtn.addEventListener("click", function () {
+        if (player.paused) {
+          player.play();
+          videoBtn.value = "Pause";
+        } else {
+          player.pause();
+          videoBtn.value = "Play";
+        }
+      });
+
+      setInterval(function () {
+        curtime.innerHTML = player.currentTime;
+      }, 250);
+
+    </script>
+  </body>
+</html>
