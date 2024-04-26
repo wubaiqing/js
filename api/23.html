@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function* ints() {
+        for (let i = 0; i < 5; i++) {
+          yield await new Promise((resolve) => setTimeout(resolve, 1000, i));
+        }
+      }
+
+      const integerStream = new ReadableStream({
+        async start(controller) {
+          for await (let chunk of ints()) {
+            controller.enqueue(chunk);
+          }
+
+          controller.close();
+        }
+      });
+
+      const writeableStream = new WritableStream({
+        write(value) {
+          console.log(value);
+        }
+      })
+
+      // 通过管道连接流
+      const pipedStream = integerStream.pipeTo(writeableStream);
+      pipedStream.read();
+    </script>
+  </body>
+</html>
