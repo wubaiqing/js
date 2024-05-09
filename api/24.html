@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const entry = performance.getEntries()[0];
+
+      console.log(entry.name);
+      console.log(entry.entryType);
+      console.log(entry.startTime);
+      console.log(entry.duration);
+
+      performance.mark('foo')
+
+      console.log(performance.getEntriesByType('mark')[0]);
+
+
+
+
+    </script>
+  </body>
+</html>

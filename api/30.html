@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="foo"></div>
+    <script>
+      const fragment = new DocumentFragment();
+      const foo = document.querySelector('#foo');
+
+      const p = document.createElement('p');
+      p.innerText = "123"
+
+      fragment.appendChild(p);
+      fragment.appendChild(document.createElement('p'));
+      fragment.appendChild(document.createElement('p'));
+
+      console.log(fragment.children.length);
+
+      foo.appendChild(fragment)
+
+
+
+    </script>
+
+  </body>
+</html>

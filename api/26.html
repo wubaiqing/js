@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      performance.mark("foo");
+
+      for (let i = 0; i < 1e6; ++i) {}
+
+      performance.mark("bar");
+
+      // 度量 Mark 的时间
+      performance.measure('baz', 'foo', 'bar');
+
+      const [differenceMark] = performance.getEntriesByType('measure')
+      console.log(differenceMark);
+
+    </script>
+  </body>
+</html>
