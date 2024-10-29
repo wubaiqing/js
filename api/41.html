@@ -7,20 +7,20 @@
   </head>
   <body>
     <script>
-      document.body.innerHTML = `
-        <div>
-          <p>Foo</p>
-        </div>
-      `
+      class FooElement extends HTMLElement {
+        constructor() {
+          super();
+          console.log('x-foo');
+        }
+      }
 
-      setTimeout(() => {
-        document.querySelector('div').attachShadow({ mode: 'open' })
-        .innerHTML = `
-          <div id="bar">
-            <slot></slot>
-          </div>
-        `
-      }, 1000);
+      customElements.define('x-foo', FooElement);
+
+      document.body.innerHTML = `
+        <x-foo></x-foo>
+        <x-foo></x-foo>
+        <x-foo></x-foo>
+      `
 
     </script>
   </body>

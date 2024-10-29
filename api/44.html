@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <template id="x-foo-tpl">
+      <p>I'm inside a custom element template!</p>
+    </template>
+
+
+    <script>
+      const template = document.querySelector('#x-foo-tpl');
+
+      class FooElement extends HTMLElement {
+
+        constructor() {
+          super();
+
+          console.log('ctor');
+        }
+
+        connectCallback() {
+          console.log('connected');
+        }
+
+        disconnectedCallback() {
+          console.log('disconnected');
+        }
+      }
+
+      customElements.define('x-foo', FooElement);
+
+      const fooElement = document.createElement('x-foo');
+
+      document.body.appendChild(fooElement)
+
+      // document.body.removeChild(fooElement)
+
+      // document.body.innerHTML += '<x-foo></x-foo>';
+
+    </script>
+
+
+  </body>
+</html>

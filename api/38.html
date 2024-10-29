@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+
+      document.body.innerHTML = `
+      <div>
+        <p slot="foo">Foo 本来是第一行，变为第二行</p>
+        <p slot="bar">Bar 本来是第二行</p>
+      </div>
+      `
+
+      document.querySelector('div').attachShadow({ mode: 'open' })
+      .innerHTML = `
+        <slot name="bar"></slot>
+        <slot name="foo"></slot>
+      `
+
+      console.log(document.querySelector('p').parentElement);
+
+      for (let color of ['red', 'green', 'blue']) {
+        const divElement = document.createElement('div');
+        divElement.innerText = `Make me ${color}`;
+        document.body.appendChild(divElement);
+
+        divElement.attachShadow({ mode: 'open' })
+        .innerHTML = `
+          <p><slot></slot></p>
+          <style>
+            p {
+              color: ${color};
+            }
+          </style>
+        `
+      }
+    </script>
+  </body>
+</html>

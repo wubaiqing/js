@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+
+
+    <script>
+
+      customElements.whenDefined('x-foo').then(() => {
+        console.log('custom element is defined');
+      })
+
+      console.log(customElements.get('x-foo'));
+
+      customElements.define('x-foo', class {});
+
+      console.log(customElements.get('x-foo'));
+
+
+    </script>
+
+
+  </body>
+</html>

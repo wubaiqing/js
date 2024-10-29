@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+
+
+    <script>
+      // document.body.innerHTML = `<x-foo></x-foo>`
+
+      class FooElement extends HTMLElement {
+
+        constructor() {
+          super();
+
+          this.bar = true;
+        }
+
+        static get observerAttributes() {
+          return ['bar']
+
+        }
+
+
+
+        get bar() {
+          return this.getAttribute('bar');
+        }
+
+        set bar(value) {
+          this.setAttribute('bar', value)
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+          if (oldValue !== newValue) {
+            console.log(`${oldValue} -> ${newValue}`);
+            this[name] = newValue
+          }
+        }
+
+      }
+
+      customElements.define('x-foo', FooElement);
+
+      document.body.innerHTML = `<x-foo bar="false"></x-foo>`
+
+      document.querySelector('x-foo').setAttribute('bar', true)
+
+      // console.log(document.body.innerHTML);
+
+    </script>
+
+
+  </body>
+</html>
