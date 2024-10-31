@@ -10,12 +10,19 @@
 
 
 
-<video id="playerVideo" width="450px" autoplay="autoplay" height="338px"
-       style="height:100%;width:100%;" class="mejs-rai-e"
-       src="blob:https://live.kuaishou.com/ae2be10e-5354-40db-9d52-13dd5562c3d4">
-</video>
 
     <script>
+
+      const fooElement = document.createElement('x-foo');
+
+      class FooElement extends HTMLElement {}
+
+      customElements.define('x-foo', FooElement);
+
+      customElements.upgrade(fooElement);
+
+      console.log(fooElement instanceof FooElement);
+
     </script>
 
 
