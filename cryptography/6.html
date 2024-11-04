@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      (async function () {
+        const params = {
+          name: "ECDSA",
+          length: "P-256",
+        };
+
+        const keyUsages = ["sign", "verify"];
+
+        const { publicKey, privateKey } = await crypto.subtle.generateKey(
+          params,
+          true,
+          keyUsages
+        );
+
+        console.log(publicKey);
+        console.log(privateKey);
+      })();
+    </script>
+  </body>
+</html>

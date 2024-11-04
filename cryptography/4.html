@@ -12,8 +12,11 @@
         const message = textEncoder.encode("foo");
         const messageDigest = await crypto.subtle.digest("SHA-256", message);
 
+        const hexDigest = Array.from(new Uint8Array(messageDigest)).map((b) => b.toString(16).padStart(2, "0")).join("");
+
         console.log(messageDigest);
         console.log(new Uint32Array(messageDigest));
+        console.log(hexDigest);
       })();
     </script>
   </body>

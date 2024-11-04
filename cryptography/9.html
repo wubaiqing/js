@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      (async function () {
+        const ellipticCurve = "P-256";
+        const algoIdentifier = "ECDH";
+        const derivedKeySize = 128;
+
+        const params = { name: algoIdentifier, namedCurve: ellipticCurve };
+
+        const keyUsages = ["deriveBits"];
+
+        const keyPairA = await crypto.subtle.generateKey(
+          params,
+          true,
+          keyUsages
+        );
+        const keyPairB = await crypto.subtle.generateKey(
+          params,
+          true,
+          keyUsages
+        );
+
+        // 从 A 的公钥和 B 的私钥派生密钥位
+        const derivedBitsAB = await crypto.subtle.deriveBits(
+          Object.assign({ public: keyPairA.publicKey }, params),
+          keyPairB.privateKey,
+          derivedKeySize
+        );
+
+        // 从 B 的公钥和 A 的私钥派生密钥位
+        const derivedBitsBA = await crypto.subtle.deriveBits(
+          Object.assign({ public: keyPairB.publicKey }, params),
+          keyPairA.privateKey,
+          derivedKeySize
+        );
+
+        const arrayAB = new Uint32Array(derivedBitsAB);
+        const arrayBA = new Uint32Array(derivedBitsBA);
+
+        // 确保密钥数组相等
+        console.log(
+          arrayAB.length === arrayBA.length &&
+            arrayAB.every((val, i) => val === arrayBA[i])
+        ); // true
+      })();
+    </script>
+  </body>
+</html>
