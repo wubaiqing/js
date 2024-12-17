@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      (async function () {
+        const algoIdentifier = "AES-CBC";
+
+        const keyParams = { name: algoIdentifier, length: 256 };
+
+        const keyUsages = ["encrypt", "decrypt"];
+
+        const key = await crypto.subtle.generateKey(keyParams, true, keyUsages);
+
+        const originalPlaintext = new TextEncoder().encode(
+          "I am Satoshi Nakamoto"
+        );
+
+        const encryptDecryptParams = {
+          name: algoIdentifier,
+          iv: crypto.getRandomValues(new Uint8Array(16)),
+        };
+
+        const ciphertext = await crypto.subtle.encrypt(
+          encryptDecryptParams,
+          key,
+          originalPlaintext
+        );
+
+        console.log(new Uint8Array(ciphertext));
+
+        // 解密数据
+        const decryptedPlaintext = await crypto.subtle.decrypt(
+          encryptDecryptParams,
+          key,
+          ciphertext
+        );
+
+        console.log(new TextDecoder().decode(decryptedPlaintext));
+      })();
+    </script>
+  </body>
+</html>
